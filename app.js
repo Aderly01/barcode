@@ -53,8 +53,7 @@ const { query } = require('./database/db');
 				res.render('index',{
 					login: true,
 					name: req.session.name,
-					rol:req.session.rol,
-					datos:results[0]
+					rol:req.session.rol
 				});		
 			} else {
 				res.render('login',{
@@ -97,18 +96,7 @@ app.post('/register-bundle', async (req, res)=>{
     const des = req.body.descripcion;
     connection.query('INSERT INTO bundle SET ?',{articulo:art,codigo:cod,descripcion:des}, async (error, results)=>{
         if(error){
-            if (req.session.loggedin) {
-				res.render('bundleRegister',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol
-				});		
-			} else {
-				res.render('login',{
-					login:false,		
-				});				
-			}
-			res.end();
+            console.log(error);
         }else{       
 			if (req.session.loggedin) {
 				res.render('bundleRegister',{
@@ -127,13 +115,10 @@ app.post('/register-bundle', async (req, res)=>{
 	});
 });
 
-
-
 //11 - Metodo para la autenticacion
 app.post('/auth', async (req, res)=> {
 	const user = req.body.user;
-	const pass = req.body.pass;    
-    let passwordHash = await bcrypt.hash(pass, 8);
+	const pass = req.body.pass; 
 	if (user && pass) {
 		connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results, fields)=> {
 			if( results.length == 0 || !(await bcrypt.compare(pass, results[0].pass)) ) {    
@@ -146,9 +131,7 @@ app.post('/auth', async (req, res)=> {
                         timer: false,
                         ruta: 'login'    
                     });
-				
-				//Mensaje simple y poco vistoso
-                //res.send('Incorrect Username and/or Password!');				
+							
 			} else {         
 				//creamos una var de session y le asignamos true si INICIO SESSION       
 				req.session.loggedin = true;                
@@ -230,7 +213,7 @@ app.use(function(req, res, next) {
 //Destruye la sesión.
 app.get('/logout', function (req, res) {
 	req.session.destroy(() => {
-	  res.redirect('/') // siempre se ejecutará después de que se destruya la sesión
+	  res.redirect('/')
 	})
 });
 

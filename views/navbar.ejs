@@ -5,18 +5,19 @@
         <ul class="navbar-nav col align-self-estart">  
             
             <li >
-                <a class="nav-text" style="text-decoration: none;"  href="/">Bulk Search</a>
+                <a class="nav-text"  style="text-decoration: none;"  href="/">Bulk Search</a>
             </li>
-            
-            <li >
+            <% if(login){%>
+            <li> >
                 <a class="nav-text" style="text-decoration: none;"  href="/bundle-search">Bundle Search</a>
             </li>
+            
             <li >
                 <a class="nav-text" style="text-decoration: none;"  href="/bundle-register">Bundle Register</a>
             </li>
         </ul>
         <div class="dropdown">
-            <% if (login) { %>  
+            
             <a class=" drop dropdown" href="#" role="button" id="dropdownMenuLink" style="text-decoration: none;" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= rol %> .<%= name %>
             </a>

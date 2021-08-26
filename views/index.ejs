@@ -11,8 +11,7 @@
   </head>
   <body >
     <%- include('navbar') %> 
-      <% if (login) { %>   
-        <% if(datos) { %>       
+      <% if (login) { %>      
           <div class="contenedor-navbar">  
               <div>
                 <div class="generador">
@@ -33,7 +32,7 @@
                       <div class="row">
                         <svg id="barcode"></svg>
                         <script>
-                          JsBarcode("#barcode", "<%= datos.codigo%>", {
+                          JsBarcode("#barcode", "2222222222222", {
                           format:"EAN13",
                           displayValue:true,
                           fontSize:24,
@@ -42,7 +41,8 @@
                           });
                       </script>
                         <div class="cont-des">
-                        <textarea class="textarea" readonly style="resize: none;" rows="3" cols="45">Descripcion del arti asdfbas,dfb  ajhsdg fjahsdg fjahsdf jhas fahsdg</textarea>                        </div>
+                        <textarea class="textarea" readonly style="resize: none;" rows="3" cols="45">Descripcion del arti asdfbas,dfb  ajhsdg fjahsdg fjahsdf jhas fahsdg</textarea>                       
+                         </div>
                         <button class="btn-search">IMPRIMIR</button>
                       </div>
                     </div>
@@ -50,7 +50,6 @@
                 </div>
               </div>     
           </div>
-          <%} %> 
        <%} %> 
   </body>
 </html>
