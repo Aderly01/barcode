@@ -1,0 +1,381 @@
+body{
+    font-family: 'Roboto';  
+    background-color: #f5f5f5;
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* Login form */
+  .login-form, .contenedor {
+    width: 300px;
+    margin: 0 auto;
+  }
+  .contenedor-navbar{
+    width: auto;
+    color: rgb(107, 26, 26);
+  }
+  #nav-1{
+    background-color: rgb(92, 24, 24);
+    box-shadow: 0 19px 10px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+    border-color: white;
+  }
+  .nav-text{
+    letter-spacing: 1px;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 15px;
+    font-size: 20px;
+  }
+  .nav-text:hover{
+    color: white;
+    font-weight: bold;
+  }
+  .login-form h1 {
+    text-align: center;
+    color:rgb(150, 31, 31) ;
+    font-size: 28px;
+    padding: 70px 0 10px 0;
+  }
+  .login-form input[type="password"],
+  .login-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+    box-sizing:border-box;
+  }
+  
+  /* Estilos boton LOGIN*/
+  .btn-login{
+    width: 100%;
+    padding: 15px;
+    background-color: #a52929;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color: #ffffff;
+  }
+  .btn-login:hover,.btn-login:active{
+    color:#fff;
+    background-color:#6b1a1a;
+    border-color:#6b1a1a
+  }
+  .btn-login:focus{
+    box-shadow:0 0 0 3px rgba(121,82,179,0.25)
+  }
+  
+  /* Estilos boton REGISTER*/
+  .btn-register{
+    width: 100%;
+    padding: 15px;
+    background-color: #34D399;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color: #ffffff;
+    margin-top: 20px;
+    /* Para dar la apariencia de un boton */
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;  
+  }
+  .btn-register:hover,.btn-register:active{
+    color:#fff;
+    background-color: #10B981;
+    border-color:#10B981
+  ;
+  }
+  .btn-register:focus{
+    box-shadow:0 0 0 3px #10B981;
+  }
+  
+  
+  
+  /* Estilos de link para ir a LOGIN*/
+  .a-login:link, .a-login:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid #10B981;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .a-login:hover, .a-login:active {
+    background-color: #10B981;
+    color: white;
+  }
+  
+  /* Estilos de link para realizar el LOGOUT*/
+  .a-logout:link, .a-logout:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid #F87171;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .a-logout:hover, .a-logout:active {
+    background-color: #F87171;
+    color: white;
+  }
+  
+  /* Estilos boton CANCELAR*/
+  .btn-cancel{
+    width: 50%;
+    padding: 15px;
+    background-color: #f55e5e;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:medium;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+    /* Para dar la apariencia de un boton */
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;  
+  }
+  .btn-cancel:hover,.btn-cancel:active{
+    color:#fff;
+    background-color: #8a3030;
+    border-color:#8a3030
+  ;
+  }
+  .btn-cancel:focus{
+    box-shadow:0 0 0 3px #8a3030;
+  }
+  
+  /* Estilos boton GUARDAR*/
+  .btn-save{
+    width: 50%;
+    padding: 15px;
+    background-color: #6a91fc;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:medium;
+    color: #ffffff;
+    margin-top: 20px;
+    /* Para dar la apariencia de un boton */
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;  
+  }
+  .btn-save:hover,.btn-save:active{
+    color:#fff;
+    background-color: #3d528d;
+    border-color:#3d528d;
+  }
+  .btn-save:focus{
+    box-shadow:0 0 0 3px #3d528d;
+  }
+  
+  /* form User Registration */
+  .register-form{
+    width: 400px;
+    margin: 0 auto;
+    padding: 0px 20px 60px 20px;
+    margin-top: 35px;
+    font-family: roboto;  
+    text-align: left !important;
+   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+  }
+  
+  .register-form h1 {
+    text-align: left;
+    color:midnightblue ;
+    font-size: 22px;
+    padding: 70px 0 10px 0;
+  }
+  .register-form input[type="password"],
+  .register-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+    box-sizing:border-box;
+  }
+  
+  /* Estilos para el select dropdown */
+  .select-css {
+    display: block;
+    font-size: 16px;  
+    font-weight: 400;  
+    line-height: 1.3;
+    padding: .4em 1.4em .3em .8em;
+    width: 400px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    margin: 0;  
+    background-color: #f5f5f5;  
+   }
+   .select-css::-ms-expand {
+    display: none;
+   }
+   .select-css:hover {
+    border-color: #888;
+   }
+   .select-css:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222; 
+    outline: none;
+   }
+   .select-css option {
+    font-weight:normal;
+   }
+   .btn-imprimir{
+     size: 50%;
+     font-family:Georgia, 'Times New Roman', Times, serif;
+     color: white;
+     margin: 20px auto;
+     margin-left: 20px;
+     background-color: teal;
+     border-color: teal;
+     border: teal;
+     font-size: 25px;
+     box-sizing: border-box;
+     border: 1px solid #ced4da;
+   }
+   .generador{
+    box-shadow: 10px 19px 10px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+     padding: 2px;
+     padding-left: 10px;
+     color: white;
+     max-width: 90%;
+     background-color: rgb(92, 24, 24);
+     margin: 30px;
+     margin-left: 50px;
+     margin-right: 50px;
+     border-radius: 5px;
+     border-color: white;
+     text-align: center;
+   }
+   .panel-gen{
+    grid-column-start: span;
+    box-shadow: 10px 19px 10px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+    padding-left: 10px;
+    color: rgb(86, 74, 253);
+    max-width: 90%;
+    background-color:white;
+    margin: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+    border-color: white;
+
+   }
+   .lbl-search{
+     font-family: Georgia, 'Times New Roman', Times, serif;
+     font-weight: bold;
+     color: rgb(16, 53, 219);
+     letter-spacing: 2px;
+   }
+   .search-form{
+    width: 300px;
+    margin: 20px;
+   }
+   .search-form input[type="text"]{
+     background-color: white;
+     border-left: white;
+     border-top: white;
+     border-right: white;
+     font-size: 20px;
+     text-align: center;
+     font-weight: bold;
+     font-family: Georgia, 'Times New Roman', Times, serif;
+   }
+   .btn-search{
+     letter-spacing: 2px;
+     margin: 10px;
+     text-align: center;
+     font-family: Georgia, 'Times New Roman', Times, serif;
+     font-weight: bold;
+     padding: 5px;
+     background-color: teal;
+     color: white;
+     border-radius: 5px;
+     box-shadow: 0 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+   }
+   .btn-search:hover{
+    background-color: rgb(0, 94, 94);
+   }
+
+   .panel-codebar{
+    background-color: white;
+    width: 100%;
+    padding-top: 5px;
+    margin-right: 50px;
+    
+   }
+  
+  .drop{
+    letter-spacing: 1px;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 15px;
+    font-size: 20px;    
+  }
+  .drop:hover{
+    color: white;
+    font-weight: bold;
+  }
+  .actualizar{
+    box-shadow: 10px 19px 10px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+     padding: 2px;
+     padding-left: 10px;
+     color: white;
+     max-width: 90%;
+     background-color: white;
+     margin: 30px;
+     margin-left: 50px;
+     margin-right: 50px;
+     border-radius: 5px;
+     border-color: white;
+     text-align: center;
+  }
+  .cont-des{
+    width: 50%;
+  }
+  .form-des label{
+    color: rgb(16, 53, 219);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .form-des input[type="text"]{
+    margin-bottom: 10px;
+    background-color: white;
+     border-left: white;
+     border-top: white;
+     border-right: white;
+     font-size: 20px;
+     text-align: center;
+     font-weight: bold;
+     font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  .textarea{
+    border-color: white;
+    margin-left: 250px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  .textarea:hover, .textarea:active, .textarea:focus{
+    border-color: white;
+  }

@@ -1,0 +1,27 @@
+<%- include('index') %>  
+<div class="actualizar">
+    <div class="generador">
+        <h3>Actualizar Datos</h3>
+    </div>
+    <div class="container form-des">
+        <form action="POST">
+            <div class="row align-items-start">
+                <div class="col">
+                    <label for="articulo">Articulo</label><br>
+                    <input readonly type="text" name="articulo" >
+                </div>
+                <div class="col">
+                    <label for="codigo">Codigo</label><br>
+                    <input type="text" name="codigo" maxlength="13" minlength="13">
+                </div>
+                <div class="col">
+                    <label for="descripcion">Descripcion</label><br>
+                    <input type="text"  name="descripcion">
+                </div>
+                <div class="col">
+                    <input type="submit" class="btn-search" value="ACTUALIZAR">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
