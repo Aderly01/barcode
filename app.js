@@ -4,8 +4,6 @@ const app = express();
 /* app.get('/ejemplo',(req,res)=>{
 	res.render('ejemplo');
 }) */
-const JsBarcode = require('jsbarcode');
-const { Canvas } = require("canvas");
 
 //2 - Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
 app.use(express.urlencoded({extended:false}));
@@ -38,6 +36,8 @@ app.use(session({
 const connection = require('./database/db');
 const { render } = require('ejs');
 const { query } = require('./database/db');
+
+const { get } = require('http');
 
 
 //9 - establecemos las rutas
@@ -306,6 +306,20 @@ app.get('/logout', function (req, res) {
 	req.session.destroy(() => {
 	  res.redirect('/')
 	})
+});
+
+/* const pdf = require("pdf-creator-node");
+const fs = require("fs"); */
+
+app.post('/imprimirPDF2',(req,res)=>{
+	const des = req.body.textarea;
+	const cod = req.body.codigo;
+	res.render('pdf',{des:des,cod:cod});
+});
+app.post('/imprimirPDF',(req,res)=>{
+	const des = req.body.textarea;
+	const cod = req.body.codigo;
+	res.render('pdf',{des:des,cod:cod});
 });
 
 app.listen(3000, (req, res)=>{

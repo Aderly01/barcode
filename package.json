@@ -20,6 +20,8 @@
     "jsbarcode": "^3.11.4",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.12",
-    "pdfkit": "^0.12.3"
+    "pdf-creator-node": "^2.2.4",
+    "pdfkit": "^0.12.3",
+    "pdfmake": "^0.2.2"
   }
 }

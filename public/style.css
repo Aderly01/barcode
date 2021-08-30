@@ -350,7 +350,8 @@ body{
      text-align: center;
   }
   .cont-des{
-    width: 50%;
+    width:min-content;
+    align-self: center;
   }
   .form-des label{
     color: rgb(16, 53, 219);
@@ -371,11 +372,45 @@ body{
   }
   .textarea{
     border-color: white;
-    margin-left: 220px;
+    border: white;
+    border-radius: 1px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  #textarea2{
+    border-color: white;
+    width: fit-content;
+    border: white;
+    border-radius: 1px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     letter-spacing: 1px;
     font-weight: bold;
   }
   .textarea:hover, .textarea:active, .textarea:focus{
     border-color: white;
+  }
+  .btn-imprimir{
+    letter-spacing: 2px;
+    margin: 10px;
+    width: 500px;
+    margin:auto;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 5px;
+    background-color: teal;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    box-shadow: 0 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+  .btn-imprimir:hover{
+   background-color: rgb(0, 94, 94);
+  }
+  #barcode{
+    margin-left: 50px;
+  }
+  .des{
+    padding-left: 60px;
   }

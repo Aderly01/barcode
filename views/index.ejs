@@ -30,7 +30,7 @@
                     </div>
                     <%if (typeof cod != 'undefined') {%>
                       <div class="panel-codebar col">
-                        <div class="row">
+                        <div >
                           <svg id="barcode"></svg>
                           <script>
                             JsBarcode("#barcode", "<%= cod %>", {
@@ -41,10 +41,13 @@
                             lineColor: "#000"
                             });
                         </script>
-                          <div class="cont-des">
-                          <textarea class="textarea" id="textarea" readonly style="resize: none;" rows="3" cols="45"><%= des %></textarea>                       
-                           </div>
-                          <button class="btn-search" >IMPRIMIR</button>
+                          <form action="/imprimirPDF" method="POST">
+                            <div >
+                              <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= des %></textarea>
+                              <input type="text" name="codigo" value="<%= cod %>" hidden>  
+                              <input type="submit" class="btn-imprimir"value="IMPRIMIR">                    
+                          </div>
+                          </form>
                         </div>
                       </div>
                     <%}%>                    

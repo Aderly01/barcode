@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="resources/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+    <%if(typeof cod != 'undefined'){%>
+    <div >
+        <div>
+          <svg id="barcode"></svg>
+          <script>
+            JsBarcode("#barcode", "<%= cod %>", {
+            format:"EAN13",
+            displayValue:true,
+            fontSize:24,
+            width:3,
+            lineColor: "#000"
+            });
+        </script>
+            <div class="des">
+              <textarea id="textarea2" type="input" readonly style="resize: none;" rows="4" cols="40"><%= des %></textarea>                   
+          </div>
+        </div>
+      </div>
+      <%}%>
+</body>
+</html>
