@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.4/dist/JsBarcode.all.min.js"></script>
+        
+        <input id="entrada_codigo" value="Cod Barras" maxlength="13">
+        <button type="button" onclick="generarcodigobarras()">Generar Codigo Barras</button>
+        <hr><svg id="codigobarras"></svg>
+        <script src="./JsBarcode.all.min.js"></script>
+        <script>
+            function generarcodigobarras() {
+                var x = document.getElementById("entrada_codigo").value;
+                JsBarcode("#codigobarras",x,{format:"EAN13",
+                displayValue:true,});
+            }
+        </script>
+</body>
+</html>

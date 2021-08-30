@@ -1,6 +1,11 @@
 // 1 - Invocamos a Express
 const express = require('express');
 const app = express();
+/* app.get('/ejemplo',(req,res)=>{
+	res.render('ejemplo');
+}) */
+const JsBarcode = require('jsbarcode');
+const { Canvas } = require("canvas");
 
 //2 - Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
 app.use(express.urlencoded({extended:false}));
@@ -34,6 +39,7 @@ const connection = require('./database/db');
 const { render } = require('ejs');
 const { query } = require('./database/db');
 
+
 //9 - establecemos las rutas
 	app.get('/login',(req, res)=>{
 		res.render('login');
@@ -46,21 +52,60 @@ const { query } = require('./database/db');
 	app.get('/clear',(req, res)=>{
 		res.redirect('/');
 	})
+	app.get('/clear-2',(req, res)=>{
+		res.redirect('/bundle-search');
+	})
 	app.post('/search',(req, res)=>{
 		let art = req.body.searchArt;
 		connection.query('SELECT * FROM bundle WHERE articulo = ?',[art],(error, results)=>{
-			if (req.session.loggedin) {
+			/* const canvas = new Canvas();
+			JsBarcode(canvas,results[0].codigo,{format:'ean13'}); */
+			if (error || results.length== 0) {
+				console.log(error);
 				res.render('index',{
 					login: true,
 					name: req.session.name,
 					rol:req.session.rol
-				});		
-			} else {
-				res.render('login',{
-					login:false,		
-				});				
+				});
+				
+			}else{
+				res.render('index',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					cod:results[0].codigo,
+					des:results[0].descripcion,
+					art:results[0].articulo
+					// barra:canvas
+				});	 
+				console.log(results);
 			}
-			res.end();
+			
+		});
+	});
+	app.post('/search-update',(req, res)=>{
+		let art = req.body.searchArt;
+		connection.query('SELECT * FROM bundle WHERE articulo = ?',[art],(error, results)=>{
+			if (error || results.length== 0) {
+				console.log(error);
+				res.render('bundle',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol
+				});
+				
+			}else{
+				res.render('bundle',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					cod:results[0].codigo,
+					des:results[0].descripcion,
+					art:results[0].articulo
+					
+				});	 
+				console.log(results);
+			}
 			
 		});
 	});
@@ -114,6 +159,35 @@ app.post('/register-bundle', async (req, res)=>{
         }
 	});
 });
+app.post('/update-bundle', async (req, res)=>{
+	const art = req.body.articulo;
+	const cod = req.body.codigo;
+    const des = req.body.descripcion;
+    connection.query('UPDATE bundle SET codigo=?, descripcion=? WHERE articulo=?',[cod,des,art], async (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{       
+			if (req.session.loggedin) {
+				res.render('bundle',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					art:art,
+					cod:cod,
+					des:des
+
+				});		
+				console.log(results)
+			} else {
+				res.render('login',{
+					login:false,		
+				});				
+			}
+			res.end();  
+            //res.redirect('/');         
+        }
+	});
+});
 
 //11 - Metodo para la autenticacion
 app.post('/auth', async (req, res)=> {
@@ -143,7 +217,7 @@ app.post('/auth', async (req, res)=> {
 					alertMessage: "¡LOGIN CORRECTO!",
 					alertIcon:'success',
 					showConfirmButton: false,
-					timer: 1000,
+					timer: 700,
 					ruta: ''
 				});        			
 			}			
@@ -173,11 +247,20 @@ app.get('/', (req, res)=> {
 //ruta que muestra la vista de bundle
 app.get('/bundle-search', (req, res)=> {
 	if (req.session.loggedin) {
-		res.render('bundle',{
-			login: true,
-			name: req.session.name,
-			rol:req.session.rol
-		});		
+		if (req.session.rol == 'admin') {
+			res.render('bundle',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol
+			});	
+		}else{
+			res.render('index',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol
+			});
+		}
+			
 	} else {
 		res.render('login',{
 			login:false,		
@@ -188,11 +271,19 @@ app.get('/bundle-search', (req, res)=> {
 //ruta que muestra la vista de bundle register
 app.get('/bundle-register', (req, res)=> {
 	if (req.session.loggedin) {
-		res.render('bundleRegister',{
-			login: true,
-			name: req.session.name,
-			rol:req.session.rol
-		});		
+		if (req.session.rol == 'admin') {
+			res.render('bundleRegister',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol
+			});	
+		}else{
+			res.render('index',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol
+			});
+		}	
 	} else {
 		res.render('login',{
 			login:false,		
