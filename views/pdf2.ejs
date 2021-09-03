@@ -13,21 +13,21 @@
     <%if(typeof cod != 'undefined'){%>
     <div >
         <div>
-          <svg id="barcode"></svg>
+            <div class="des">
+                <label id="textarea2" type="input" readonly ><%= des %></label>                   
+            </div>
+          <svg id="barcodeBdl"></svg>
           <script>
-            JsBarcode("#barcode", "<%= cod %>", {
+            JsBarcode("#barcodeBdl", "<%= cod %>", {
             format:"EAN13",
             displayValue:true,
             fontSize:30,
-            width:4,
             textMargin:2,
-            height:120,
+            width:3,
+            height:100,
             lineColor: "#000"
             });
         </script>
-            <div class="des2">
-              <textarea id="textarea3" type="input" readonly style="resize: none;" rows="2" cols="38"><%= des %></textarea>                   
-          </div>
         </div>
       </div>
       <%}%>

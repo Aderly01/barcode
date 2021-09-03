@@ -295,6 +295,7 @@ body{
      border-left: white;
      border-top: white;
      border-right: white;
+     outline: none;
      font-size: 20px;
      text-align: center;
      font-weight: bold;
@@ -359,10 +360,12 @@ body{
     font-weight: bold;
     letter-spacing: 1px;
   }
-  .form-des input[type="text"]{
+  .form-des input[type="text"],
+  .form-des input[type="password"]{
     margin-bottom: 10px;
     background-color: white;
      border-left: white;
+     outline: none;
      border-top: white;
      border-right: white;
      font-size: 20px;
@@ -373,7 +376,9 @@ body{
   .textarea{
     border-color: white;
     border: white;
+    text-align: center;
     border-radius: 1px;
+    outline: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
     letter-spacing: 1px;
     font-weight: bold;
@@ -382,9 +387,22 @@ body{
     border-color: white;
     width: fit-content;
     border: white;
+    font-size: 25px;
+    outline: none;
     border-radius: 1px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 15px;
+    font-family:Arial, Helvetica, sans-serif;
     letter-spacing: 1px;
+  }
+  #textarea3{
+    border-color: white;
+    width: fit-content;
+    border: white;
+    font-size: 23px;
+    outline: none;
+    border-radius: 1px;
+    margin-top: 15px;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: bold;
   }
   .textarea:hover, .textarea:active, .textarea:focus{
@@ -409,8 +427,26 @@ body{
    background-color: rgb(0, 94, 94);
   }
   #barcode{
-    margin-left: 50px;
+    margin-top: 30px;
+    margin-left: 30px;
   }
   .des{
-    padding-left: 60px;
+    padding-left: 40px;
+  }
+  .des2{
+    padding-left: 30px;
+  }
+  .btn-borrar{
+    border-radius: 5px;
+    background-color: rgb(250, 127, 127);
+  }
+  .btn-borrar:hover{
+    background-color: rgb(165, 65, 65);
+  }
+  .btn-editar{
+    border-radius: 5px;
+    background-color: rgb(127, 166, 250);
+  }
+  .btn-editar:hover{
+    background-color: rgb(66, 91, 145);
   }

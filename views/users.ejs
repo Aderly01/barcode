@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/style.css">
+    <title>Codebar 2.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></head>
+<body>
+    <%- include('navbar') %>
+    <% if (login) { %>   
+    <div class="actualizar">
+        <div class="generador">
+            <h3>Registrar Usuario</h3>
+        </div>
+        <div class="container form-des">
+            <form action="/register" method="POST">
+                <div class="row align-items-start">
+                    <input type="text" id="id" name="id" hidden value="">
+                    <div class="col">
+                        <label for="user">User</label>
+                        <input type="text" name="user" required tabindex="1" autofocus>
+                    </div>
+                    <div class="col">
+                        <label for="user">Full Name</label>
+                        <input type="text" name="name" required tabindex="2">
+                    </div>
+                    <div class="col">
+                        <label for="rol">Rol</label>                          
+                        <select id="rol" name="rol" class="select-css" tabindex="3">
+                            <option value="admin" selected>Admin</option>
+                            <option value="user">user</option>                    
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="pass">Password</label><br> 
+			            <input type="password" name="pass" required tabindex="4">
+                    </div>
+                    <div class="col">
+                        <input type="submit" class="btn-search" value="Registrar">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="container table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">USER</th>
+                    <th scope="col">FULL NAME</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(typeof users != 'undefined') {%>
+                <%users.forEach((user) => {%>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.user %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.rol %></td>
+                    <td>
+                        <a href="/edit-user/<%=user.id%>"><button class="btn-editar">Editar</button></a>
+                        <a href="/delete-user/<%=user.id%>"><button class="btn-borrar" >Borrar</button></a>
+                    </td>
+                </tr>
+                <%})%> 
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+    <%} %> 
+</body>
+</html>

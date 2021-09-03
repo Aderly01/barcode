@@ -45,9 +45,6 @@ const { get } = require('http');
 		res.render('login');
 	})
 
-	app.get('/register',(req, res)=>{
-		res.render('register');
-	})
 	//limpiar el buscador
 	app.get('/clear',(req, res)=>{
 		res.redirect('/');
@@ -121,16 +118,19 @@ app.post('/register', async (req, res)=>{
     connection.query('INSERT INTO users SET ?',{user:user, name:name, rol:rol, pass:passwordHash}, async (error, results)=>{
         if(error){
             console.log(error);
-        }else{            
-			res.render('register', {
-				alert: true,
-				alertTitle: "Registration",
-				alertMessage: "¡Successful Registration!",
-				alertIcon:'success',
-				showConfirmButton: false,
-				timer: 1000,
-				ruta: ''
-			});
+        }else{       
+			if (req.session.loggedin) {
+				res.render('users',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol
+				});		
+			} else {
+				res.render('login',{
+					login:false,		
+				});				
+			}
+			res.end();  
             //res.redirect('/');         
         }
 	});
@@ -291,8 +291,82 @@ app.get('/bundle-register', (req, res)=> {
 	}
 	res.end();
 });
+app.get('/users', (req, res)=> {
+	connection.query('SELECT * FROM users',(error, results)=>{
+		if (req.session.loggedin) {
+			if (req.session.rol == 'admin') {
+				res.render('users',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					users:results
+				});
+			}else{
+				res.render('index',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol
+				});
+			}
+			
+	} else {
+		res.render('login',{
+			login:false,		
+		});				
+	}
+	res.end();
+	})
+	
+});
 
-
+//Editar y eliminar users
+app.get('/edit-user/:id',(req, res)=>{
+	const id = req.params.id;
+	connection.query('SELECT * FROM users WHERE id=?',[id], (error, results)=>{
+		if(error){
+            console.log(error);
+        }else{       
+			if (req.session.loggedin) {
+				res.render('editarUsers',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					ide:results[0].id,
+					usuario:results[0].user,
+					nombre:results[0].name
+				});		
+				console.log(results);
+			} else {
+				res.render('login',{
+					login:false,		
+				});				
+			}
+			res.end();       
+        }
+	});
+})
+app.get('/delete-user/:id',(req, res)=>{
+	const id = req.params.id;
+	connection.query('DELETE FROM users WHERE id=?',[id], (error, results)=>{
+		if(error){
+            console.log(error);
+        }else{       
+			if (req.session.loggedin) {
+				res.render('editarUsers',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol
+				});		
+				console.log(results);
+			} else {
+				res.render('login',{
+					login:false,		
+				});				
+			}
+			res.end();       
+        }
+	});
+})
 //función para limpiar la caché luego del logout
 app.use(function(req, res, next) {
     if (!req.user)
@@ -311,12 +385,12 @@ app.get('/logout', function (req, res) {
 /* const pdf = require("pdf-creator-node");
 const fs = require("fs"); */
 
-app.post('/imprimirPDF2',(req,res)=>{
+app.post('/imprimirBundle',(req,res)=>{
 	const des = req.body.textarea;
 	const cod = req.body.codigo;
-	res.render('pdf',{des:des,cod:cod});
+	res.render('pdf2',{des:des,cod:cod});
 });
-app.post('/imprimirPDF',(req,res)=>{
+app.post('/imprimirBulk',(req,res)=>{
 	const des = req.body.textarea;
 	const cod = req.body.codigo;
 	res.render('pdf',{des:des,cod:cod});
