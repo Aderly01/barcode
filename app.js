@@ -120,11 +120,7 @@ app.post('/register', async (req, res)=>{
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
-				res.render('users',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol
-				});		
+				res.redirect('/users');		
 			} else {
 				res.render('login',{
 					login:false,		
@@ -320,20 +316,18 @@ app.get('/users', (req, res)=> {
 });
 
 //Editar y eliminar users
-app.get('/edit-user/:id',(req, res)=>{
+app.get('/edit/:id',(req, res)=>{
 	const id = req.params.id;
 	connection.query('SELECT * FROM users WHERE id=?',[id], (error, results)=>{
 		if(error){
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
-				res.render('editarUsers',{
+				res.render('editUsers',{
 					login: true,
 					name: req.session.name,
 					rol:req.session.rol,
-					ide:results[0].id,
-					usuario:results[0].user,
-					nombre:results[0].name
+					usere: results[0]
 				});		
 				console.log(results);
 			} else {
@@ -345,18 +339,36 @@ app.get('/edit-user/:id',(req, res)=>{
         }
 	});
 })
-app.get('/delete-user/:id',(req, res)=>{
+app.post('/update',async(req, res)=>{
+	const id = req.body.id;
+	const user = req.body.user;
+	const name = req.body.name;
+	const rol = req.body.rol;
+	const pass = req.body.pass
+	let passwordHash = await bcrypt.hash(pass, 8);
+	connection.query('UPDATE users SET ? WHERE id=?',[{user:user,name:name,rol:rol,pass:passwordHash},id],async (error, results)=>{
+		if(error){
+            console.log(error);
+        }else{       
+			if (req.session.loggedin) {
+				res.redirect('/users');
+			} else {
+				res.render('login',{
+					login:false,		
+				});				
+			}
+			res.end();       
+        }
+	});
+});
+app.get('/delete/:id',(req, res)=>{
 	const id = req.params.id;
 	connection.query('DELETE FROM users WHERE id=?',[id], (error, results)=>{
 		if(error){
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
-				res.render('editarUsers',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol
-				});		
+				res.redirect('/users');		
 				console.log(results);
 			} else {
 				res.render('login',{
