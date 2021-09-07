@@ -28,12 +28,12 @@
                       </form>
                       <a href="clear"> <button class="btn-search"> NUEVA BUSQUEDA</button></a>
                     </div>
-                    <%if (typeof cod != 'undefined') {%>
+                    <%if (typeof descripcion != 'undefined') {%>
                       <div class="panel-codebar col">
                         <div >
                           <svg id="barcode"></svg>
                           <script>
-                            JsBarcode("#barcode", "<%= cod %>", {
+                            JsBarcode("#barcode", "<%= codigo %>", {
                             format:"EAN13",
                             displayValue:true,
                             fontSize:24,
@@ -43,8 +43,8 @@
                         </script>
                           <form action="/imprimirBulk" method="POST">
                             <div >
-                              <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= des %></textarea>
-                              <input type="text" name="codigo" value="<%= cod %>" hidden>  
+                              <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= descripcion %> Qtv: <%= cantidad %></textarea>
+                              <input type="text" name="codigo" value="<%= codigo %>" hidden>  
                               <input type="submit" class="btn-imprimir"value="IMPRIMIR">                    
                           </div>
                           </form>

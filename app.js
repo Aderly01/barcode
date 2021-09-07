@@ -31,56 +31,29 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-
 // 8 - Invocamos a la conexion de la DB
 const connection = require('./database/db');
 const { render } = require('ejs');
 const { query } = require('./database/db');
 
+
 const { get } = require('http');
 
 
 //9 - establecemos las rutas
-	app.get('/login',(req, res)=>{
-		res.render('login');
-	})
+app.get('/login',(req, res)=>{
+	res.render('login');
+})
 
 	//limpiar el buscador
-	app.get('/clear',(req, res)=>{
-		res.redirect('/');
-	})
-	app.get('/clear-2',(req, res)=>{
-		res.redirect('/bundle-search');
-	})
-	app.post('/search',(req, res)=>{
-		let art = req.body.searchArt;
-		connection.query('SELECT * FROM bundle WHERE articulo = ?',[art],(error, results)=>{
-			/* const canvas = new Canvas();
-			JsBarcode(canvas,results[0].codigo,{format:'ean13'}); */
-			if (error || results.length== 0) {
-				console.log(error);
-				res.render('index',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol
-				});
-				
-			}else{
-				res.render('index',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol,
-					cod:results[0].codigo,
-					des:results[0].descripcion,
-					art:results[0].articulo
-					// barra:canvas
-				});	 
-				console.log(results);
-			}
-			
-		});
-	});
-	app.post('/search-update',(req, res)=>{
+app.get('/clear',(req, res)=>{
+	res.redirect('/');
+})
+app.get('/clear-2',(req, res)=>{
+	res.redirect('/bundle-search');
+})
+
+app.post('/search-update',(req, res)=>{
 		let art = req.body.searchArt;
 		connection.query('SELECT * FROM bundle WHERE articulo = ?',[art],(error, results)=>{
 			if (error || results.length== 0) {
@@ -105,9 +78,8 @@ const { get } = require('http');
 			}
 			
 		});
-	});
+});
 	
-
 //10 - Método para la REGISTRACIÓN
 app.post('/register', async (req, res)=>{
 	const user = req.body.user;
@@ -410,4 +382,35 @@ app.post('/imprimirBulk',(req,res)=>{
 
 app.listen(3000, (req, res)=>{
     console.log('SERVER RUNNING IN http://localhost:3000');
+});
+const { rest } = require('./configDB.js');
+
+app.post('/search',(req,res)=>{
+	let art = req.body.searchArt;
+	setTimeout(async ()=> {
+		const show =await rest.executeQuery('SELECT [ARTICULO],[DESCRIPCION],[CODIGO_CORPORATIVO] FROM [exactus].[h335].[ARTICULO_COMPRA] WHERE [ARTICULO] = @id',[{name:'id',type:'varchar',value: art}])
+		/* const descripcion = show.data[0][0]['DESCRIPCION']
+		const codigo = show.data[0][0]['CODIGO_CORPORATIVO'] */
+		if(show.data[0][0]['CODIGO_CORPORATIVO'] == null){
+			res.render('index',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol,
+				codigo: '0',
+				cantidad: '0',
+				descripcion: 'Este articulo no tiene coigo corporativo'
+			})
+		}else{
+			const codigo = show.data[0][0]['CODIGO_CORPORATIVO'];
+			const codQtv = codigo.split('-');
+			res.render('index',{
+				login: true,
+				name: req.session.name,
+				rol:req.session.rol,
+				codigo: codQtv[0],
+				cantidad: codQtv[1],
+				descripcion: show.data[0][0]['DESCRIPCION']
+			});
+		}
+	})
 });
