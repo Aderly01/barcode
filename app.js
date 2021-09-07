@@ -1,9 +1,7 @@
 // 1 - Invocamos a Express
 const express = require('express');
 const app = express();
-/* app.get('/ejemplo',(req,res)=>{
-	res.render('ejemplo');
-}) */
+
 
 //2 - Para poder capturar los datos del formulario (sin urlencoded nos devuelve "undefined")
 app.use(express.urlencoded({extended:false}));
@@ -389,28 +387,31 @@ app.post('/search',(req,res)=>{
 	let art = req.body.searchArt;
 	setTimeout(async ()=> {
 		const show =await rest.executeQuery('SELECT [ARTICULO],[DESCRIPCION],[CODIGO_CORPORATIVO] FROM [exactus].[h335].[ARTICULO_COMPRA] WHERE [ARTICULO] = @id',[{name:'id',type:'varchar',value: art}])
-		/* const descripcion = show.data[0][0]['DESCRIPCION']
-		const codigo = show.data[0][0]['CODIGO_CORPORATIVO'] */
-		if(show.data[0][0]['CODIGO_CORPORATIVO'] == null){
-			res.render('index',{
-				login: true,
-				name: req.session.name,
-				rol:req.session.rol,
-				codigo: '0',
-				cantidad: '0',
-				descripcion: 'Este articulo no tiene coigo corporativo'
-			})
+		if(show.data == false){
+			res.redirect('/')
 		}else{
-			const codigo = show.data[0][0]['CODIGO_CORPORATIVO'];
-			const codQtv = codigo.split('-');
-			res.render('index',{
-				login: true,
-				name: req.session.name,
-				rol:req.session.rol,
-				codigo: codQtv[0],
-				cantidad: codQtv[1],
-				descripcion: show.data[0][0]['DESCRIPCION']
-			});
-		}
+		
+			if(show.data[0][0]['CODIGO_CORPORATIVO'] == null){
+				res.render('index',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					codigo: '0',
+					cantidad: '0',
+					descripcion: 'Este articulo no tiene codigo corporativo'
+				})
+			}else{
+				const codigo = show.data[0][0]['CODIGO_CORPORATIVO'];
+				const codQtv = codigo.split('-');
+				res.render('index',{
+					login: true,
+					name: req.session.name,
+					rol:req.session.rol,
+					codigo: codQtv[0],
+					cantidad: codQtv[1],
+					descripcion: show.data[0][0]['DESCRIPCION']
+				});
+			}
+		}	
 	})
 });
