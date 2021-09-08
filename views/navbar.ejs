@@ -5,23 +5,23 @@
         <% if(login){ %>
         <ul class="navbar-nav col align-self-estart">  
             <li >
-                <a class="nav-text"  style="text-decoration: none;"  href="/">Bulk Search</a>
+                <a class="nav-text"  style="text-decoration: none;"  href="/">BULK SEARCH</a>
             </li>
             <% if (rol != "user")  { %>
                 <li> 
-                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-search">Bundle Search</a>
+                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-search">BUNDLE SEARCH</a>
                 </li>
                 <li >
-                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-register">Bundle Register</a>
+                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-register">BUNDLE REAGISTER</a>
                 </li>
                 <li >
-                    <a class="nav-text" style="text-decoration: none;"  href="/users">Users</a>
+                    <a class="nav-text" style="text-decoration: none; "  href="/users">USERS</a>
                  </li>
             <%}%>
             </ul>
             <div class="dropdown dropstart">
             
-            <a class=" drop dropdown" href="#" role="button" id="dropdownMenuLink" style="text-decoration: none;" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class=" drop dropdown" href="#" role="button" id="dropdownMenuLink" style="text-decoration: none; text-transform: uppercase;" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= name %>
             </a>
           
@@ -29,7 +29,7 @@
               <li><a class="dropdown-item" href="logout">Cerrar Sesion</a></li>
               <!--<li><a class="dropdown-item" href="#"></a></li>-->
             </ul>
-        </div>
+            </div>
         <%}%>
     </div>
 </nav>

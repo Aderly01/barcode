@@ -11,7 +11,7 @@
 </head>
 <body>
     <%if(typeof cod != 'undefined'){%>
-    <div >
+    <div onclick="atras()">
         <div>
           <svg id="barcode"></svg>
           <script>
@@ -31,5 +31,8 @@
         </div>
       </div>
       <%}%>
+      <script type="text/javascript">
+        setTimeout(function(){window.location.href="/";},15000);
+      </script>
 </body>
 </html>

@@ -11,20 +11,20 @@
   </head>
   <body >
     <%- include('navbar') %> 
-      <% if (login) { %>      
+      <% if (login) { %>
           <div class="contenedor-navbar">  
               <div>
                 <div class="generador">
-                  <h2>Generador de barras Bulk</h2>
+                  <h2>GENERADOR DE BARRAS BULK</h2>
                 </div>
                 
                 <div class="panel-gen">
                   <div class="row align-items-start">
                     <div class="panel-search col">
-                      <form class="search-form" method="POST" action="/search">
+                      <form class="search-form" method="POST" >
                         <label class="lbl-search" for="searchArt">ARTICULO</label><br>
                         <input type="text" id="art" name="searchArt" maxlength="8" minlength="8" required>
-                        <input class="btn-search" type="submit" value="BUSCAR">
+                        <input class="btn-search" formaction="/search" type="submit" value="BUSCAR">
                       </form>
                       <a href="clear"> <button class="btn-search"> NUEVA BUSQUEDA</button></a>
                     </div>
@@ -41,11 +41,11 @@
                             lineColor: "#000"
                             });
                         </script>
-                          <form action="/imprimirBulk" method="POST">
+                          <form  method="POST">
                             <div >
                               <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= descripcion %> Qtv: <%= cantidad %></textarea>
                               <input type="text" name="codigo" value="<%= codigo %>" hidden>  
-                              <input type="submit" class="btn-imprimir"value="IMPRIMIR">                    
+                              <input type="submit" formaction="/imprimirBulk" class="btn-imprimir"value="IMPRIMIR">                    
                           </div>
                           </form>
                         </div>

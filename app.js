@@ -415,3 +415,7 @@ app.post('/search',(req,res)=>{
 		}	
 	})
 });
+
+app.get('/reg',(req, res)=>{
+	res.render('eeee');
+})
