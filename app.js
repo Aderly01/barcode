@@ -87,6 +87,7 @@ app.post('/register', async (req, res)=>{
 	let passwordHash = await bcrypt.hash(pass, 8);
     connection.query('INSERT INTO users SET ?',{user:user, name:name, rol:rol, pass:passwordHash}, async (error, results)=>{
         if(error){
+			res.redirect('/users');
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
@@ -107,6 +108,7 @@ app.post('/register-bundle', async (req, res)=>{
     const des = req.body.descripcion;
     connection.query('INSERT INTO bundle SET ?',{articulo:art,codigo:cod,descripcion:des}, async (error, results)=>{
         if(error){
+			res.redirect('/bundle-register')
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
