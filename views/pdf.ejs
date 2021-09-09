@@ -11,9 +11,9 @@
 </head>
 <body>
     <%if(typeof cod != 'undefined'){%>
-    <div onclick="atras()">
+    <div>
         <div>
-          <svg id="barcode"></svg>
+          <a href="/"><svg id="barcode"></svg></a>
           <script>
             JsBarcode("#barcode", "<%= cod %>", {
             format:"EAN13",
@@ -31,8 +31,8 @@
         </div>
       </div>
       <%}%>
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         setTimeout(function(){window.location.href="/";},15000);
-      </script>
+      </script> -->
 </body>
 </html>
