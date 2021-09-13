@@ -43,7 +43,7 @@
                         </script>
                           <form  method="POST">
                             <div >
-                              <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= descripcion %> Qtv: <%= cantidad %></textarea>
+                              <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none;" rows="3" cols="45"><%= articulo %> <%= descripcion %> Qtv: <%= cantidad %></textarea>
                               <input type="text" name="codigo" value="<%= codigo %>" hidden>  
                               <input type="submit" formaction="/imprimirBulk" class="btn-imprimir"value="IMPRIMIR">                    
                           </div>

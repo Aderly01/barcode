@@ -400,7 +400,8 @@ app.post('/search',(req,res)=>{
 					rol:req.session.rol,
 					codigo: '0',
 					cantidad: '0',
-					descripcion: 'Este articulo no tiene codigo corporativo'
+					descripcion: 'Este articulo no tiene codigo corporativo',
+					articulo: ' '
 				})
 			}else{
 				const codigo = show.data[0][0]['CODIGO_CORPORATIVO'];
@@ -411,7 +412,8 @@ app.post('/search',(req,res)=>{
 					rol:req.session.rol,
 					codigo: codQtv[0],
 					cantidad: codQtv[1],
-					descripcion: show.data[0][0]['DESCRIPCION']
+					descripcion: show.data[0][0]['DESCRIPCION'],
+					articulo: show.data[0][0]['ARTICULO']
 				});
 			}
 		}	
