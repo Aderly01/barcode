@@ -7,71 +7,61 @@
     <title>Codebar 2.0</title>
     <link rel="stylesheet" href="resources/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
+      @import url('https://fonts.googleapis.com/css?family=Lobster');
+      html {
+        font-size: 62.5%;
+      }
+      .body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
+        background-size: 100%;
+      }
+    </style>
 </head>
-<body>
+<body class="body">
+  <%- include('navbar') %>
     <% if (login) { %>   
         <%if(usere){%>
-    <nav class="navbar navbar-expand-lg" style="background-color: rgb(92, 24, 24)">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-family: Georgia, 'Times New Roman', Times, serif; text-decoration:none; color:white">
-              <li class="nav-item">
-                <a class="nav-link active" style="color:white" aria-current="page" href="/">BULK SEARCH</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color:white" href="/bundle-search">BUNDLE SEARCH</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color:white" href="/bundle-register">BUNDLE REAGISTER</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" style="color:white" href="/users">USERS</a>
-              </li>
-            </ul>
-            <div class="dropdown dropstart" style="font-family: Georgia, 'Times New Roman', Times, serif;">
-                <a class=" drop dropdown" href="#" style="color:white; text-decoration: none; text-transform: uppercase;" role="button" id="dropdownMenuLink" style="text-decoration: none; text-transform: uppercase;" data-bs-toggle="dropdown" aria-expanded="false">
-                    name
-                </a>
-                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
-                  <!--<li><a class="dropdown-item" href="#"></a></li>-->
-                </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div class="container">
-            <form action="/update" method="POST">
-                <input type="text" id="id" name="id"  hidden value="<%=usere.id%>">
-                <div class="row align-items-start" >
-                <div class="mb-3 mt-3 col" style="font-family: Georgia, 'Times New Roman', Times, serif;">
-                  <label for="user" class="form-label" style="font-weight: bold;">User</label>
-                  <input type="text" class="form-control" name="user" id="user"  required tabindex="1" value="<%=usere.user%>" >
-                </div>
-                <div class="mb-3 mt-3 col">
-                    <label for="name" class="form-label" style="font-weight: bold;">Full name</label>
-                    <input type="text" class="form-control" name="name" id="name" required tabindex="2" value="<%=usere.name%>" >
-                </div>
-                <div class="mb-3 mt-3 col">
-                    <label for="rol" class="form-label" style="font-weight: bold;">rol</label>
-                    <select class="form-select" name="rol" id="rol" tabindex="3">
-                        <option <%= usere.rol == 'admin' ? "selected" : '' %> value="admin" >Admin</option>
-                        <option <%= usere.rol == 'user' ? "selected" : '' %> value="user" >User</option>
-                      </select>
-                </div>
-                <div class="mb3 mt-3 col">
-                    <label for="pass" class="form-label" style="font-weight: bold;">Password</label>
-                    <input type="password" name="pass" class="form-control" id="pass" required tabindex="4">
-                </div>
-                <div class="container">
-                    <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
-                </div>
+      <div class="d-flex justify-content-center rounded-3"style="opacity: 0.9;">
+            <div class="d-flex flex-column w-50 text-center bg-white rounded-3">
+              <div class="actualizar bg-info text-white rounded-3">
+                <h2 style="font-weight:bold;">ACTUALIZAR DATOS</h2>
+            </div> 
+              <form action="/update" method="POST" >
+                    <input type="text" id="id" name="id"  hidden value="<%=usere.id%>">
+                    <div class="row align-items-start" >
+                      <div class="mb-3 mt-3 col" >
+                        <label for="user" class="form-label" style="font-weight: bold;">USER</label>
+                        <input type="text" class="form-control" name="user" id="user" style="font-weight:bold;" required tabindex="1" value="<%=usere.user%>" >
+                      </div>
+                      <div class="mb-3 mt-3 col">
+                          <label for="name" class="form-label" style="font-weight: bold;">FULL NAME</label>
+                          <input type="text" class="form-control" name="name" id="name" style="font-weight:bold;" required tabindex="2" value="<%=usere.name%>" >
+                      </div>
+                      <div class="mb-3 mt-3 col">
+                          <label for="rol" class="form-label" style="font-weight: bold;">ROL</label>
+                          <select class="form-select" name="rol" id="rol" style="font-weight:bold;" tabindex="3">
+                              <option <%= usere.rol == 'admin' ? "selected" : '' %> value="admin" >Admin</option>
+                              <option <%= usere.rol == 'user' ? "selected" : '' %> value="user" >User</option>
+                            </select>
+                      </div>
+                      <div class="mb3 mt-3 col">
+                          <label for="pass" class="form-label" style="font-weight: bold;">PASSWORD</label>
+                          <input type="password" name="pass" style="font-weight:bold;" class="form-control" id="pass" required tabindex="4">
+                      </div>
+                      <div class="col mt-3 p-3">
+                          <button style="font-weight:bold;" type="submit" class="btn btn-primary">ACTUALIZAR</button>
+                      </div>
+                    </div>
               </form>
-          </div>
+            </div>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <%}%>
     <%} %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -36,7 +36,10 @@ const { query } = require('./database/db');
 
 
 const { get } = require('http');
-
+const pdf = require('html-pdf');
+const fs = require('fs');
+const { print } = require('pdf-to-printer');
+const { getPrinters } = require('pdf-to-printer');
 
 //9 - establecemos las rutas
 app.get('/login',(req, res)=>{
@@ -71,8 +74,7 @@ app.post('/search-update',(req, res)=>{
 					des:results[0].descripcion,
 					art:results[0].articulo
 					
-				});	 
-				console.log(results);
+				});
 			}
 			
 		});
@@ -144,8 +146,7 @@ app.post('/update-bundle', async (req, res)=>{
 					cod:cod,
 					des:des
 
-				});		
-				console.log(results)
+				});
 			} else {
 				res.render('login',{
 					login:false,		
@@ -366,18 +367,67 @@ app.get('/logout', function (req, res) {
 	})
 });
 
-/* const pdf = require("pdf-creator-node");
-const fs = require("fs"); */
 
-app.post('/imprimirBundle',(req,res)=>{
+const options = {height: "50mm",width: "80mm"};
+const optionsP = {
+	printer: "ZDesigner ZD230-203dpi ZPL (Copy 1)",
+	win32: ['-print-settings "fit"'],
+  };
+const options2 = {height: "60mm",width: "110mm"};
+const optionsP2 = {
+	  printer: "ZDesigner ZD230-203dpi ZPL (Copy 1)",
+	  win32: ['-print-settings "fit"'],
+	};
+
+app.post('/imprimirBundle',async(req,res)=>{
 	const des = req.body.textarea;
 	const cod = req.body.codigo;
-	res.render('pdf2',{des:des,cod:cod});
+	const cant = req.body.cant;
+	res.render('pdf2',{
+		des:des,
+		cod:cod
+		},function(err,html){
+		pdf.create(html,options).toFile(`./pdf/bundle.pdf`,function(error,results){
+			if(error){
+				console.log(error);
+			}else{
+				console.log(results)
+				var datafile = fs.readFileSync(`./pdf/bundle.pdf`);
+				res.header('content-type','application/pdf');
+				res.send(datafile); 
+				
+				/* for(let count = 1;count <= cant;count++){
+					print("./pdf/bundle.pdf", optionsP).then(console.log);
+				}
+				res.redirect('/bundle-search') */
+			}
+		})
+	})
 });
 app.post('/imprimirBulk',(req,res)=>{
 	const des = req.body.textarea;
 	const cod = req.body.codigo;
-	res.render('pdf',{des:des,cod:cod});
+	const cant = req.body.cant;
+	res.render('pdf',{
+		des:des,
+		cod:cod
+		},function(err,html){
+		pdf.create(html,options2).toFile(`./pdf/bulk.pdf`,function(error,results){
+			if(error){
+				console.log(error);
+			}else{
+				console.log(results)
+				var datafile = fs.readFileSync(`./pdf/bulk.pdf`);
+				res.header('content-type','application/pdf');
+				res.send(datafile); 
+				
+				/* for(let count = 1;count <= cant;count++){
+					print("./pdf/bundle.pdf", optionsP).then(console.log);
+				}
+				res.redirect('/bundle-search') */
+			}
+		})
+	})
 });
 
 app.listen(3000, (req, res)=>{
@@ -419,7 +469,3 @@ app.post('/search',(req,res)=>{
 		}	
 	})
 });
-
-app.get('/reg',(req, res)=>{
-	res.render('eeee');
-})

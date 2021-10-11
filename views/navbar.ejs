@@ -1,35 +1,71 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<nav class="navbar navbar-expand-lg navbar-dark " id="nav-1">
-    <div class="collapse navbar-collapse" id="navbarNav">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark bg-gradient">
+    <div class="container">
+        <a href="/" class="navbar-brand">Barcode 3.0</a>
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+            <span class="menu-icon-bar"></span>
+            <span class="menu-icon-bar"></span>
+            <span class="menu-icon-bar"></span>
+        </button>
         <% if(login){ %>
-        <ul class="navbar-nav col align-self-estart">  
-            <li >
-                <a class="nav-text"  style="text-decoration: none;"  href="/">BULK SEARCH</a>
-            </li>
-            <% if (rol != "user")  { %>
-                <li> 
-                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-search">BUNDLE SEARCH</a>
-                </li>
-                <li >
-                   <a class="nav-text" style="text-decoration: none;"  href="/bundle-register">BUNDLE REGISTER</a>
-                </li>
-                <li >
-                    <a class="nav-text" style="text-decoration: none; "  href="/users">USERS</a>
-                 </li>
-            <%}%>
-            </ul>
-            <div class="dropdown dropstart">
-            
-            <a class=" drop dropdown" href="#" role="button" id="dropdownMenuLink" style="text-decoration: none; text-transform: uppercase;" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= name %>
-            </a>
-          
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="logout">Cerrar Sesion</a></li>
-              <!--<li><a class="dropdown-item" href="#"></a></li>-->
-            </ul>
+        <div class="col-8" style="font-weight:bold;">
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li><a href="/" class="nav-item nav-link active">BULK SEARCH</a></li>
+                    <% if (rol != "user")  { %>
+                        <li><a href="/bundle-search" class="nav-item nav-link active">BUNDLE SEARCH</a></li>
+                        <li><a href="/bundle-register" class="nav-item nav-link active">BUNDLE REGISTER</a></li>
+                        <li><a href="/users" class="nav-item nav-link active">USERS</a></li>
+                    <%}%>
+                </ul>
             </div>
+        </div>
+        <div class="col-4" style="font-weight:bold;">
+            <div id="main-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li><a href="#" class="nav-item nav-link active"><%= name %></a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li><a href="logout" class="nav-item nav-link active">SALIR</a></li>
+                </ul>
+            </div>
+        </div>
         <%}%>
     </div>
 </nav>
+<script>
+    jQuery(function($) {
+    $(window).on('scroll', function() {
+		if ($(this).scrollTop() >= 200) {
+			$('.navbar').addClass('fixed-top');
+		} else if ($(this).scrollTop() == 0) {
+			$('.navbar').removeClass('fixed-top');
+		}
+	});
+	
+	function adjustNav() {
+		var winWidth = $(window).width(),
+			dropdown = $('.dropdown'),
+			dropdownMenu = $('.dropdown-menu');
+		
+		if (winWidth >= 768) {
+			dropdown.on('mouseenter', function() {
+				$(this).addClass('show')
+					.children(dropdownMenu).addClass('show');
+			});
+			
+			dropdown.on('mouseleave', function() {
+				$(this).removeClass('show')
+					.children(dropdownMenu).removeClass('show');
+			});
+		} else {
+			dropdown.off('mouseenter mouseleave');
+		}
+	}
+	
+	$(window).on('resize', adjustNav);
+	
+	adjustNav();
+});
+  </script>

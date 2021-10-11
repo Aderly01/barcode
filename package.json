@@ -21,9 +21,7 @@
     "mssql": "^7.2.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.12",
-    "pdf-creator-node": "^2.2.4",
-    "pdfkit": "^0.12.3",
-    "pdfmake": "^0.2.2",
+    "pdf-to-printer": "^4.0.0",
     "rest-mssql-nodejs": "^1.0.10"
   }
 }

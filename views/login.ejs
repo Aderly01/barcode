@@ -6,15 +6,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<link rel="stylesheet" href="resources/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
 </head>
-<body>
-	<div class="login-form">
-		<h1>Login</h1>
-		<form action="auth" method="POST">
-			<input type="text" name="user" placeholder="User" autofocus required>
-			<input type="password" name="pass" placeholder="Password" required>
-			<input type="submit" class="btn-login" value="Login">
-		</form>
+<body class="body">
+	<div class="d-flex justify-content-center  rounded-3 text-white" style="opacity: 0.9;">
+    <div class="d-flex flex-column w-25 text-center bd-highlight mb-3">
+      <div class="form-control">
+        <div class="p-2 bg-info text-white rounded-3 bd-highlight" >
+          <h1 style="font-weight: bold;">LOGIN</h1>
+        </div>
+        <form action="auth" method="POST">
+          <input type="text" name="user" placeholder="User" class="form-control" autofocus required>
+          <input type="password" name="pass" class="form-control" placeholder="Password" required>
+          <input type="submit" class="btn btn-primary form-control" style="font-weight: bold;" value="LOGIN">
+        </form>
+       </div>
+    </div>
+  </div>
 		
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -31,6 +40,5 @@
     })
     </script>
   <% } %>
-	</div>
 </body>
 </html>
