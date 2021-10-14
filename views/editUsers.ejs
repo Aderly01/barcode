@@ -17,8 +17,9 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 1.6rem;
         font-weight: 400;
-        background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
-        background-size: 100%;
+        /* background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
+        background-size: 100%; */
+        background-color: rgb(116, 153, 148);
       }
     </style>
 </head>
@@ -28,8 +29,8 @@
         <%if(usere){%>
       <div class="d-flex justify-content-center rounded-3"style="opacity: 0.9;">
             <div class="d-flex flex-column w-50 text-center bg-white rounded-3">
-              <div class="actualizar bg-info text-white rounded-3">
-                <h2 style="font-weight:bold;">ACTUALIZAR DATOS</h2>
+              <div class="actualizar bg-info text-black rounded-3">
+                <h1 style="font-weight:bold;">ACTUALIZAR DATOS</h1>
             </div> 
               <form action="/update" method="POST" >
                     <input type="text" id="id" name="id"  hidden value="<%=usere.id%>">
@@ -53,8 +54,8 @@
                           <label for="pass" class="form-label" style="font-weight: bold;">PASSWORD</label>
                           <input type="password" name="pass" style="font-weight:bold;" class="form-control" id="pass" required tabindex="4">
                       </div>
-                      <div class="col mt-3 p-3">
-                          <button style="font-weight:bold;" type="submit" class="btn btn-primary">ACTUALIZAR</button>
+                      <div class="col mt-5">
+                          <button style="font-weight:bold; font-size: 15px;" type="submit" class="btn btn-primary">ACTUALIZAR</button>
                       </div>
                     </div>
               </form>
@@ -62,6 +63,15 @@
       </div>
       <%}%>
     <%} %>
+    <div class="fixed-bottom ">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-dark border-4 border-bottom pb-3 mb-3">
+          
+        </ul>
+        <p class="text-center  text-black">© 2021 AGROINDUSTRIAS DIADEMA ZONA FRANCA HONDURAS S.A</p>
+        <p class="text-center  text-black">POWER BY ICT</p>
+      </footer>
+     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

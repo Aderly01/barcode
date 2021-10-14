@@ -13,13 +13,13 @@
 	<div class="d-flex justify-content-center  rounded-3 text-white" style="opacity: 0.9;">
     <div class="d-flex flex-column w-25 text-center bd-highlight mb-3">
       <div class="form-control">
-        <div class="p-2 bg-info text-white rounded-3 bd-highlight" >
+        <div class="p-2 bg-info text-black rounded-3 bd-highlight" >
           <h1 style="font-weight: bold;">LOGIN</h1>
         </div>
         <form action="auth" method="POST">
-          <input type="text" name="user" placeholder="User" class="form-control" autofocus required>
-          <input type="password" name="pass" class="form-control" placeholder="Password" required>
-          <input type="submit" class="btn btn-primary form-control" style="font-weight: bold;" value="LOGIN">
+          <input type="text" name="user" placeholder="User" class="form-control text-center"style="font-weight: bold;" autofocus required>
+          <input type="password" name="pass" class="form-control text-center" placeholder="Password" style="font-weight: bold;" required>
+          <input type="submit" class="btn btn-primary form-control" style="font-weight: bold; font-size: 15px;" value="LOGIN">
         </form>
        </div>
     </div>
@@ -40,5 +40,14 @@
     })
     </script>
   <% } %>
+  <div class="fixed-bottom ">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-dark border-4 border-bottom pb-3 mb-3">
+        
+      </ul>
+      <p class="text-center  text-black">© 2021 AGROINDUSTRIAS DIADEMA ZONA FRANCA HONDURAS S.A</p>
+      <p class="text-center  text-black">POWER BY ICT</p>
+    </footer>
+   </div>
 </body>
 </html>

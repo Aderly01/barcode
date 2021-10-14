@@ -14,7 +14,7 @@
       <% if (login) { %>
           <div class="d-flex justify-content-center  rounded-3 text-white" style="opacity: 0.9;">
             <div class="d-flex flex-column w-50 text-center bd-highlight mb-3">
-              <div class="p-2 bg-info rounded-3 bd-highlight" >
+              <div class="p-2 bg-info rounded-3 text-black bd-highlight" >
                 <h1 style="font-weight: bold;">GENERADOR DE BARRAS BULK</h1>
               </div>
               <div class="p-2 bg-white rounded-3 bd-highlight">
@@ -47,10 +47,10 @@
                       </script>
                         <form  method="POST">
                         <div >
-                          <textarea class="textarea" name="textarea" id="textarea" type="input" readonly style="resize: none; font-weight:bold; border: none; outline: none; font-size: 15px;" rows="3" cols="45"><%= articulo %> <%= descripcion %> Qtv: <%= cantidad %></textarea>
+                          <textarea class="text-center" name="textarea" id="textarea" type="input" readonly style="resize: none; font-weight:bold; border: none; outline: none; font-size: 15px;" rows="3" cols="45"><%= articulo %> <%= descripcion %> Qtv: <%= cantidad %></textarea>
                           <input type="text" name="codigo" value="<%= codigo %>" hidden> 
-                          <!-- <label for="cant" class="form-label text-black" style="font-weight:bold; font-size: 15px;">COPIAS</label>
-                          <input type="number" id="cant" name="cant" class="col-2" value="1">  -->
+                          <label for="cant" class="form-label text-black" style="font-weight:bold; font-size: 15px;">COPIAS</label>
+                          <input type="number" id="cant" name="cant" min="1" class="col-2" value="1"> 
                           <input type="submit" formaction="/imprimirBulk" class="btn btn-primary m-2"value="IMPRIMIR" style="font-weight:bold; font-size: 15px;">                    
                         </div>
                         </form>
@@ -62,7 +62,18 @@
               </div>
             </div>
           </div>
-       <%} %> 
+       <%} %>
+       <div class="fixed-bottom ">
+        <footer class="py-3 my-4">
+          <ul class="nav justify-content-center border-dark border-5 border-bottom pb-3 mb-3"></ul>
+          <strong>
+            <p class="text-center  text-black">© 2021 AGROINDUSTRIAS DIADEMA ZONA FRANCA HONDURAS S.A</p>
+          </strong>
+          <strong>
+            <p class="text-center  text-black">POWER BY ICT</p>
+          </strong>
+        </footer>
+       </div>
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
 </html>

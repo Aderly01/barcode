@@ -41,6 +41,8 @@ const fs = require('fs');
 const { print } = require('pdf-to-printer');
 const { getPrinters } = require('pdf-to-printer');
 
+const { rest,adminDefault } = require('./configDB.js');
+
 //9 - establecemos las rutas
 app.get('/login',(req, res)=>{
 	res.render('login');
@@ -162,39 +164,54 @@ app.post('/update-bundle', async (req, res)=>{
 app.post('/auth', async (req, res)=> {
 	const user = req.body.user;
 	const pass = req.body.pass; 
-	if (user && pass) {
-		connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results, fields)=> {
-			if( results.length == 0 || !(await bcrypt.compare(pass, results[0].pass)) ) {    
-				res.render('login', {
-                        alert: true,
-                        alertTitle: "Error",
-                        alertMessage: "USUARIO y/o PASSWORD incorrectas",
-                        alertIcon:'error',
-                        showConfirmButton: true,
-                        timer: false,
-                        ruta: 'login'    
-                    });
-							
-			} else {         
-				//creamos una var de session y le asignamos true si INICIO SESSION       
-				req.session.loggedin = true;                
-				req.session.name = results[0].name;
-				req.session.rol = results[0].rol;
-				res.render('login', {
-					alert: true,
-					alertTitle: "Conexión exitosa",
-					alertMessage: "¡LOGIN CORRECTO!",
-					alertIcon:'success',
-					showConfirmButton: false,
-					timer: 700,
-					ruta: ''
-				});        			
-			}			
+	if(user === adminDefault.name && pass === adminDefault.password){
+		req.session.loggedin = true;                
+					req.session.name = adminDefault.name;
+					req.session.rol = adminDefault.rol;
+					res.render('login', {
+						alert: true,
+						alertTitle: "Conexión exitosa",
+						alertMessage: "¡LOGIN CORRECTO!",
+						alertIcon:'success',
+						showConfirmButton: false,
+						timer: 700,
+						ruta: ''
+					}); 
+	}else{
+		if (user && pass) {
+			connection.query('SELECT * FROM users WHERE user = ?', [user], async (error, results, fields)=> {
+				if( results.length == 0 || !(await bcrypt.compare(pass, results[0].pass)) ) {    
+					res.render('login', {
+							alert: true,
+							alertTitle: "Error",
+							alertMessage: "USUARIO y/o PASSWORD incorrectas",
+							alertIcon:'error',
+							showConfirmButton: true,
+							timer: false,
+							ruta: 'login'    
+						});
+								
+				} else {         
+					//creamos una var de session y le asignamos true si INICIO SESSION       
+					req.session.loggedin = true;                
+					req.session.name = results[0].name;
+					req.session.rol = results[0].rol;
+					res.render('login', {
+						alert: true,
+						alertTitle: "Conexión exitosa",
+						alertMessage: "¡LOGIN CORRECTO!",
+						alertIcon:'success',
+						showConfirmButton: false,
+						timer: 700,
+						ruta: ''
+					});        			
+				}			
+				res.end();
+			});
+		} else {	
+			res.send('Please enter user and Password!');
 			res.end();
-		});
-	} else {	
-		res.send('Please enter user and Password!');
-		res.end();
+		}
 	}
 });
 
@@ -368,15 +385,17 @@ app.get('/logout', function (req, res) {
 });
 
 
-const options = {height: "50mm",width: "80mm"};
+const options = {height: "60mm",width: "50mm"};
 const optionsP = {
-	printer: "ZDesigner ZD230-203dpi ZPL (Copy 1)",
+	printer: "ZDesigner ZD230-203dpi ZPL",
 	win32: ['-print-settings "fit"'],
+	unix: ["-o fit-to-page"]
   };
 const options2 = {height: "60mm",width: "110mm"};
 const optionsP2 = {
-	  printer: "ZDesigner ZD230-203dpi ZPL (Copy 1)",
+	  printer: "ZDesigner ZD230-203dpi ZPL",
 	  win32: ['-print-settings "fit"'],
+	  unix: ["-o fit-to-page"],
 	};
 
 app.post('/imprimirBundle',async(req,res)=>{
@@ -392,14 +411,14 @@ app.post('/imprimirBundle',async(req,res)=>{
 				console.log(error);
 			}else{
 				console.log(results)
-				var datafile = fs.readFileSync(`./pdf/bundle.pdf`);
+				/* var datafile = fs.readFileSync(`./pdf/bundle.pdf`);
 				res.header('content-type','application/pdf');
-				res.send(datafile); 
+				res.send(datafile); */ 
 				
-				/* for(let count = 1;count <= cant;count++){
+				for(let count = 1;count <= cant;count++){
 					print("./pdf/bundle.pdf", optionsP).then(console.log);
 				}
-				res.redirect('/bundle-search') */
+				res.redirect('/bundle-search')
 			}
 		})
 	})
@@ -433,7 +452,7 @@ app.post('/imprimirBulk',(req,res)=>{
 app.listen(3000, (req, res)=>{
     console.log('SERVER RUNNING IN http://localhost:3000');
 });
-const { rest } = require('./configDB.js');
+
 
 app.post('/search',(req,res)=>{
 	let art = req.body.searchArt;

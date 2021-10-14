@@ -7,8 +7,9 @@ html {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
-  background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
-  background-size: 100%;
+  /* background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
+  background-size: 100%; */
+  background-color: rgb(116, 153, 148);
 }
 h1 {
   margin-bottom: 0.5em;

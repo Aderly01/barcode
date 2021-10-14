@@ -7,7 +7,13 @@ const rest = new (require('rest-mssql-nodejs'))({
         encrypt: true // this is optional, by default is false
     } 
 });
+const adminDefault = {
+    name: 'ICTmanager',
+    rol:'admin',
+    password: 'Eternal2021'
+}
 
 module.exports = {
-    rest
+    rest,
+    adminDefault
 }
