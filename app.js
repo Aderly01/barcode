@@ -280,7 +280,7 @@ app.get('/bundle-register', (req, res)=> {
 app.get('/users', (req, res)=> {
 	connection.query('SELECT * FROM users',(error, results)=>{
 		if (req.session.loggedin) {
-			if (req.session.rol == 'admin') {
+			if (req.session.rol == 'super-admin') {
 				res.render('users',{
 					login: true,
 					name: req.session.name,
@@ -385,7 +385,7 @@ app.get('/logout', function (req, res) {
 });
 
 
-const options = {height: "60mm",width: "50mm"};
+const options = {height: "27mm",width: "48mm"};
 const optionsP = {
 	printer: "ZDesigner ZD230-203dpi ZPL",
 	win32: ['-print-settings "fit"'],
@@ -411,14 +411,14 @@ app.post('/imprimirBundle',async(req,res)=>{
 				console.log(error);
 			}else{
 				console.log(results)
-				/* var datafile = fs.readFileSync(`./pdf/bundle.pdf`);
+				var datafile = fs.readFileSync(`./pdf/bundle.pdf`);
 				res.header('content-type','application/pdf');
-				res.send(datafile); */ 
+				res.send(datafile); 
 				
-				for(let count = 1;count <= cant;count++){
+				/* for(let count = 1;count <= cant;count++){
 					print("./pdf/bundle.pdf", optionsP).then(console.log);
 				}
-				res.redirect('/bundle-search')
+				res.redirect('/bundle-search') */
 			}
 		})
 	})

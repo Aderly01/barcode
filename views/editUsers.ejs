@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codebar 2.0</title>
+    <title>Barcode</title>
     <link rel="stylesheet" href="resources/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <style>
@@ -19,7 +19,7 @@
         font-weight: 400;
         /* background: url(https://scontent.ftgu3-2.fna.fbcdn.net/v/t1.6435-9/67416027_10156125668531644_2361766648798511104_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=e3f864&_nc_ohc=c3UKkqcv4A8AX9P4XzH&_nc_oc=AQlvcCqPkgU7K9i5X3xJ7-0oLZ2c9fv2e9LTvIez7Ji_twUX8Snt741Jtm6tSC8Kix8&_nc_ht=scontent.ftgu3-2.fna&oh=9f7c445808fb5ca886aefbefe121d81f&oe=617CFA25);
         background-size: 100%; */
-        background-color: rgb(116, 153, 148);
+        background-color: rgb(226, 226, 226);
       }
     </style>
 </head>
@@ -27,7 +27,7 @@
   <%- include('navbar') %>
     <% if (login) { %>   
         <%if(usere){%>
-      <div class="d-flex justify-content-center rounded-3"style="opacity: 0.9;">
+      <div class="d-flex justify-content-center mt-5 rounded-3"style="opacity: 0.9;">
             <div class="d-flex flex-column w-50 text-center bg-white rounded-3">
               <div class="actualizar bg-info text-black rounded-3">
                 <h1 style="font-weight:bold;">ACTUALIZAR DATOS</h1>
@@ -63,15 +63,7 @@
       </div>
       <%}%>
     <%} %>
-    <div class="fixed-bottom ">
-      <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-dark border-4 border-bottom pb-3 mb-3">
-          
-        </ul>
-        <p class="text-center  text-black">© 2021 AGROINDUSTRIAS DIADEMA ZONA FRANCA HONDURAS S.A</p>
-        <p class="text-center  text-black">POWER BY ICT</p>
-      </footer>
-     </div>
+    <%- include('footer') %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark bg-gradient">
     <div class="container">
-        <a href="/" class="navbar-brand">Barcode 3.0</a>
+        <a href="/" class="navbar-brand">Barcode</a>
         <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
             <span class="menu-icon-bar"></span>
             <span class="menu-icon-bar"></span>
@@ -16,6 +16,8 @@
                     <% if (rol != "user")  { %>
                         <li><a href="/bundle-search" class="nav-item nav-link active">BUNDLE SEARCH</a></li>
                         <li><a href="/bundle-register" class="nav-item nav-link active">BUNDLE REGISTER</a></li>
+                    <%}%>
+                    <% if (rol == "super-admin")  { %>
                         <li><a href="/users" class="nav-item nav-link active">USERS</a></li>
                     <%}%>
                 </ul>
@@ -34,38 +36,3 @@
         <%}%>
     </div>
 </nav>
-<script>
-    jQuery(function($) {
-    $(window).on('scroll', function() {
-		if ($(this).scrollTop() >= 200) {
-			$('.navbar').addClass('fixed-top');
-		} else if ($(this).scrollTop() == 0) {
-			$('.navbar').removeClass('fixed-top');
-		}
-	});
-	
-	function adjustNav() {
-		var winWidth = $(window).width(),
-			dropdown = $('.dropdown'),
-			dropdownMenu = $('.dropdown-menu');
-		
-		if (winWidth >= 768) {
-			dropdown.on('mouseenter', function() {
-				$(this).addClass('show')
-					.children(dropdownMenu).addClass('show');
-			});
-			
-			dropdown.on('mouseleave', function() {
-				$(this).removeClass('show')
-					.children(dropdownMenu).removeClass('show');
-			});
-		} else {
-			dropdown.off('mouseenter mouseleave');
-		}
-	}
-	
-	$(window).on('resize', adjustNav);
-	
-	adjustNav();
-});
-  </script>

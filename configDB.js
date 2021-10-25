@@ -9,7 +9,7 @@ const rest = new (require('rest-mssql-nodejs'))({
 });
 const adminDefault = {
     name: 'ICTmanager',
-    rol:'admin',
+    rol:'super-admin',
     password: 'Eternal2021'
 }
 
