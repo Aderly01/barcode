@@ -233,7 +233,7 @@ app.get('/', (req, res)=> {
 //ruta que muestra la vista de bundle
 app.get('/bundle-search', (req, res)=> {
 	if (req.session.loggedin) {
-		if (req.session.rol == 'admin') {
+		if (req.session.rol == 'admin' || req.session.rol == 'super-admin') {
 			res.render('bundle',{
 				login: true,
 				name: req.session.name,
@@ -257,7 +257,7 @@ app.get('/bundle-search', (req, res)=> {
 //ruta que muestra la vista de bundle register
 app.get('/bundle-register', (req, res)=> {
 	if (req.session.loggedin) {
-		if (req.session.rol == 'admin') {
+		if (req.session.rol == 'admin' || req.session.rol == 'super-admin') {
 			res.render('bundleRegister',{
 				login: true,
 				name: req.session.name,
@@ -313,13 +313,21 @@ app.get('/edit/:id',(req, res)=>{
             console.log(error);
         }else{       
 			if (req.session.loggedin) {
-				res.render('editUsers',{
-					login: true,
-					name: req.session.name,
-					rol:req.session.rol,
-					usere: results[0]
-				});		
-				console.log(results);
+				if (req.session.rol == 'super-admin') {
+					res.render('editUsers',{
+						login: true,
+						name: req.session.name,
+						rol:req.session.rol,
+						usere: results[0]
+					});		
+					
+				}else{
+					res.render('index',{
+						login: true,
+						name: req.session.name,
+						rol:req.session.rol
+					});
+				}
 			} else {
 				res.render('login',{
 					login:false,		
