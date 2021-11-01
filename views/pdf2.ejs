@@ -29,7 +29,7 @@
         <div class="des">
             <label id="textarea2" type="input" readonly rows="3" cols="20"><%= des %></label>                   
         </div>
-        <svg id="barcodeBdl"></svg>
+        <a href="/bundle-search"><svg id="barcodeBdl"></svg></a>
         <script>
             JsBarcode("#barcodeBdl", "<%= cod %>", {
             format:"EAN13",
