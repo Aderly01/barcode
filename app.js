@@ -393,7 +393,7 @@ app.get('/logout', function (req, res) {
 });
 
 
-const options = {height: "27mm",width: "48mm"};
+const options = {height: "30mm",width: "50mm"};
 const optionsP = {
 	printer: "ZDesigner ZD230-203dpi ZPL",
 	win32: ['-print-settings "fit"'],
@@ -424,7 +424,7 @@ app.post('/imprimirBundle',async(req,res)=>{
 				res.send(datafile); 
 				
 				/* for(let count = 1;count <= cant;count++){
-					print("./pdf/bundle.pdf", optionsP).then(console.log);
+					print("./pdf/bundle.pdf").then(console.log);
 				}
 				res.redirect('/bundle-search') */
 			}
@@ -449,7 +449,7 @@ app.post('/imprimirBulk',(req,res)=>{
 				res.send(datafile); 
 				
 				/* for(let count = 1;count <= cant;count++){
-					print("./pdf/bundle.pdf", optionsP).then(console.log);
+					print("./pdf/bundle.pdf").then(console.log);
 				}
 				res.redirect('/bundle-search') */
 			}
