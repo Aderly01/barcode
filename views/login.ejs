@@ -14,11 +14,13 @@
     <div class="d-flex flex-column w-25 text-center bd-highlight mb-3">
       <div class="form-control">
         <div class="p-2 bg-info text-black rounded-3 bd-highlight" >
-          <h1 style="font-weight: bold;">LOGIN</h1>
+          <h1 style="font-weight: bold;">Inicio de Sesion</h1>
         </div>
         <form action="auth" method="POST">
-          <input type="text" name="user" placeholder="User" class="form-control text-center"style="font-weight: bold;" autofocus required>
-          <input type="password" name="pass" class="form-control text-center" placeholder="Password" style="font-weight: bold;" required>
+          <label for="user" style="font-weight: bold; font-size: 15px;" class="mb-3">Nombre Usuario</label>
+          <input type="text" name="user" placeholder="User" class="form-control text-center mb-3"style="font-weight: bold;" autofocus required>
+          <label for="pass" style="font-weight: bold; font-size: 15px;" class="mb-3">Contraseña</label>
+          <input type="password" name="pass" class="form-control text-center mb-3" placeholder="Password" style="font-weight: bold;" required>
           <input type="submit" class="btn btn-primary form-control" style="font-weight: bold; font-size: 15px;" value="LOGIN">
         </form>
        </div>
